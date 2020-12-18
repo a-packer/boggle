@@ -11,23 +11,22 @@ class BoggleGame {
 
   /* show word in list of words */
   showWord(word) {
-    $(".words", this.board).append($("<li>", { text: word }));
+    $("#words", this.board).append($("<li>", { text: word }));
   }
 
   /* show score in html */
   showScore() {
-    // select score return the highscore
   }
 
   /* show a status message */
   showMessage(msg, cls) {
-    $("message-text") // return msg
+    $("#message-text", this.board).text(msg)
   }
 
   /* handle submission of word: if unique and valid, score & show message`*/
   async handleSubmit(evt) {
     evt.preventDefault();
-    const $word = $(".word", this.board);
+    const $word = $("#word", this.board);
 
     let word = $word.val();
     if (!word) return;

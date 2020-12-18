@@ -22,13 +22,14 @@
 
         <h1>Boggle Game!</h1>
 
-        <form method='POST' id="submit-word" action='/check-word'>
+        <form id="submit-word">
           <label for="name">Word Found:</label>
-          <input type="text" name="word">
+          <input type="text" name="word" id="word">
         </form>
 
-        <h2>High Score: <em class="score">{{ highscore }}</em></h2>
-        <p id="message-text">{{ msg }}</p>
+        <h2>High Score: <em class="score"></em></h2>
+        <p id="message-text"></p>
+        <ul id="words"></ul>
 
       </div>
 

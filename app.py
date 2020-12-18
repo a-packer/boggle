@@ -59,8 +59,7 @@ def homepage():
     return render_template("board.html", board=board)
 
 
-
-@app.route("/check-word", methods=["POST"])
+@app.route("/check-word")
 def check_word():
     """Check if word is in dictionary."""
 
@@ -69,4 +68,5 @@ def check_word():
     response = boggle_game.check_valid_word(board, word)
 
     return jsonify({'result': response})
+
 
