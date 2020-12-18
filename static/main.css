@@ -1,0 +1,49 @@
+body {
+    background-color: rgb(3, 61, 148);
+    border: solid white 15px;
+    height: 100vh;
+}
+
+div.col-sm-2.letter{
+    background-color: white;
+    color: rgb(3, 61, 148);
+    font-size: 90px;
+    border: solid black 1px;
+    border-radius: 15px;
+    text-align: center;
+    margin: 4px;
+}
+
+h1 {
+    color: white;
+    font-size: 100px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+#game {
+    padding-bottom: 20px;
+    padding-top: 50px;
+}
+
+label {
+    color: white;
+    font-size: 18px;
+    padding-top: 20px;
+    padding-left: 50px;
+}
+input {
+    font-size: 18px;
+    width: 100px;
+}
+h2 { 
+    color: white;
+    font-size: 18px;
+    font-weight: bolder;
+    padding-top: 20px;
+    padding-left: 50px;
+}
+em {
+    font-style: normal;
+    font-size: 30px;
+}

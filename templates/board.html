@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Boggle</title>
+  
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="../static/main.css">
+</head>
+
+<body>
+  
+  <div class="container" id="game">
+    <div class="row">
+      <div class="col-sm-4">
+
+        <h1>Boggle Game!</h1>
+
+        <form method='POST' id="submit-word" action='/check-word'>
+          <label for="name">Word Found:</label>
+          <input type="text" name="word">
+        </form>
+
+        <h2>High Score: <em class="score">{{ highscore }}</em></h2>
+        <p id="message-text">{{ msg }}</p>
+
+      </div>
+
+      <div class="col-sm-8">
+        {% for row in board %}
+        <div class="row">
+          {% for cell in row %}
+          <div class="col-sm-2 letter">{{ cell }}</div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+      </div>  
+    
+    </div>
+  </div>
+</body>
+
+  <script src="http://unpkg.com/jquery"></script>
+  <script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>
+  <script src="/static/boggle.js"></script>
+  <script>
+    let game = new BoggleGame("boggle");
+  </script>
+</html>
