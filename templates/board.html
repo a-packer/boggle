@@ -5,11 +5,11 @@
   <title>Boggle</title>
   
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- Latest compiled JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="../static/main.css">
 </head>
@@ -22,13 +22,23 @@
 
         <h1>Boggle Game!</h1>
 
-        <form id="submit-word">
+        <form class="submit-word">
           <label for="name">Word Found:</label>
           <input type="text" name="word" id="word">
+          <button type="sutmit" class="btn btn-outline-light">Submit</button>
         </form>
 
-        <h2>High Score: <em class="score"></em></h2>
-        <p id="message-text"></p>
+        <div class="row" id="timer-row">
+          <p class="timer col-sm-1 text-right">60</p><p class="col-sm-2 text-left">seconds</p>
+        </div>
+       
+        
+      
+        <div class="row" id="msg-row">
+          <p id="score" class="col-sm-4 text-right">0</p><em class="col-sm-1 text-left">points</em>
+        </div>
+        <p id="message-text" class="col-sm-12">Play!</p>
+        <h3>Winning Words:</h1>
         <ul id="words"></ul>
 
       </div>
@@ -51,6 +61,6 @@
   <script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>
   <script src="/static/boggle.js"></script>
   <script>
-    let game = new BoggleGame("boggle");
+    let game = new BoggleGame("boggle", 60);
   </script>
 </html>

@@ -1,6 +1,6 @@
 body {
     background-color: rgb(3, 61, 148);
-    border: solid white 15px;
+    border: solid yellowgreen 15px;
     height: 100vh;
 }
 
@@ -12,6 +12,10 @@ div.col-sm-2.letter{
     border-radius: 15px;
     text-align: center;
     margin: 4px;
+}
+button {
+    margin-left: 50px;
+    margin-bottom: 50px;
 }
 
 h1 {
@@ -43,10 +47,34 @@ h2 {
     padding-top: 20px;
     padding-left: 50px;
 }
+div#msg-row.row {
+    background-color: yellowgreen;
+    border: solid white 2px;
+    padding: 5px;
+    width: 70%;
+}
+p#message-text {
+    padding: 10px;
+    color: yellowgreen;
+}
 em {
     font-style: normal;
-    font-size: 30px;
+    font-size: 25px;
+    color: white;
 }
 p {
     color: white;
+    font-size: 25px;
+    margin: 0px;
+}
+h3 {
+    color: white;
+}
+ul {
+    color: white;
+    height: 150px;
+    overflow-y: scroll;
+}
+ul#words li {
+    font-size: 20px;
 }
