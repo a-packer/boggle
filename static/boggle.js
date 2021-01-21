@@ -37,14 +37,19 @@ class BoggleGame {
   
   /* handle submission of word: if unique and valid, score & show message`*/
   async handleSubmit(evt) {
-    evt.preventDefault();
-    
+    evt.preventDefault()
+     
     const $word = $("#word");
 
     let word = $word.val();
+    $('form').val("")
+    $word.val("")
+
+
     if (!word) return;
     if (this.guesses.includes(word)) {
       this.showMessage("Try a new word")
+
       return
     }
     // check server for validity
@@ -61,7 +66,6 @@ class BoggleGame {
       this.guesses.push(word)
     }
 
-    evt.preventDefault()
   }
 
   /* Update timer in DOM */

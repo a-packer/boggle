@@ -28,8 +28,14 @@
         <form class="submit-word">
           <label for="name">Word Found:</label>
           <input type="text" name="word" id="word">
-          <button type="sutmit" id="submit">Submit</button>
+          <button type="submit" id="submit">Submit</button>
         </form>
+
+        <!-- <form>
+          <label for="test">test</label>
+          <input type="text" name="test" id="test">
+          <button type="submit" id="submit">Submit</button>
+        </form> -->
 
         <div class="row" id="timer-row">
           <p class="timer col-sm-1 text-right">60</p><p class="col-sm-2 text-left">seconds</p>
@@ -67,6 +73,6 @@
   <script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>
   <script src="/static/boggle.js"></script>
   <script>
-    let game = new BoggleGame("boggle", 60);
+    let game = new BoggleGame("boggle", 10);
   </script>
 </html>
