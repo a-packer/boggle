@@ -5,6 +5,7 @@ class BoggleGame {
   /* make a new game at this DOM id */
 
   constructor(boardId, time=60) {
+   
     this.score = 0;
     this.words = new Set();
     this.board = $("#" + boardId);
@@ -67,21 +68,17 @@ class BoggleGame {
   showTimer() {
     $(".timer").text(this.time);
   }
-  hideTimer() {
-    $("#timer-row").hide()
-    $("#word").hide()
-    $("form").hide()
-    $("#message-text").hide()
-  }
-
 
   /* Tick: handle a second passing in game */
   async tick() {
     this.time -= 1;
     this.showTimer();
     if (this.time === 0) {
-      alert(`time's up. Your Final Score: ${this.score}`)
-      this.hideTimer()
+      await this.scoreGame();
+      $("#timer-row").hide()
+      $("#word").hide()
+      $("form").hide()
+      $("#playBtn").show()
     }
   }
 
@@ -90,9 +87,10 @@ class BoggleGame {
     if (resp.data.brokeRecord) {
       this.showMessage(`New record: ${this.score}`, "ok");
     } else {
-      this.showMessage(`Final score: ${this.score}`, "ok");
     }
   }
+  
+
 
 
 }

@@ -7,17 +7,19 @@ body {
 div.col-sm-2.letter{
     background-color: white;
     color: rgb(3, 61, 148);
-    font-size: 90px;
+    font-size: 80px;
     border: solid black 1px;
     border-radius: 15px;
     text-align: center;
     margin: 4px;
 }
-button {
+button#submit {
     margin-left: 50px;
-    margin-bottom: 50px;
+    display: none;
 }
-
+button#playBtn {
+    display: none;
+}
 h1 {
     color: white;
     font-size: 100px;
@@ -29,7 +31,6 @@ h1 {
     padding-bottom: 20px;
     padding-top: 50px;
 }
-
 label {
     color: white;
     font-size: 18px;
@@ -64,17 +65,30 @@ em {
 }
 p {
     color: white;
-    font-size: 25px;
+    font-size: 20px;
     margin: 0px;
+}
+p#score {
+    font-size: 25px;
 }
 h3 {
     color: white;
 }
 ul {
     color: white;
-    height: 150px;
+    height: 100px;
     overflow-y: scroll;
 }
+/* Hide scrollbar for Chrome, Safari and Opera */
+ul::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+ul {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 ul#words li {
     font-size: 20px;
 }

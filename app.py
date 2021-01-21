@@ -17,8 +17,10 @@ size = len(board)
 def homepage():
     """Show board."""
     session['board'] = board
+    highscore = session.get("highscore", 0)
+    nplays = session.get("nplays", 0)
 
-    return render_template("board.html", board=board)
+    return render_template("board.html", board=board, highscore=highscore, nplays=nplays)
 
 
 @app.route("/check-word")
@@ -27,15 +29,23 @@ def check_word():
 
     word = request.args["word"]
     word = word.lower() #make word lowercase
-    board = session["board"]
+    board = session['board']
     response = boggle_game.check_valid_word(board, word)
 
     return jsonify({'result': response})
 
-@app.route("/scores")
-def score_board():
-    """Show list of scores"""
-    session['scores'] = 
-    return render_template("scores.html", scores=scores)
+@app.route("/post-score", methods=["POST"])
+def post_score():
+    """Receive score, update nplays, update high score if appropriate."""
+
+    score = request.json["score"]
+    highscore = session.get("highscore", 0)
+    nplays = session.get("nplays", 0)
+
+    session['nplays'] = nplays + 1
+    session['highscore'] = max(score, highscore)
+
+    return jsonify(brokeRecord=score > highscore)
+
 
 

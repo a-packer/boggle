@@ -22,24 +22,27 @@
 
         <h1>Boggle Game!</h1>
 
+        <p>High Score: {{ highscore }} in {{ nplays }} plays
+        </p>
+
         <form class="submit-word">
           <label for="name">Word Found:</label>
           <input type="text" name="word" id="word">
-          <button type="sutmit" class="btn btn-outline-light">Submit</button>
+          <button type="sutmit" id="submit">Submit</button>
         </form>
 
         <div class="row" id="timer-row">
           <p class="timer col-sm-1 text-right">60</p><p class="col-sm-2 text-left">seconds</p>
         </div>
-       
-        
-      
+          
         <div class="row" id="msg-row">
           <p id="score" class="col-sm-4 text-right">0</p><em class="col-sm-1 text-left">points</em>
         </div>
+
         <p id="message-text" class="col-sm-12">Play!</p>
         <h3>Winning Words:</h1>
         <ul id="words"></ul>
+        <button id="playBtn" class="btn btn-outline-light" onClick="window.location.reload()">Play Again</button>
 
       </div>
 
@@ -52,9 +55,12 @@
         </div>
       {% endfor %}
       </div>  
+
+      <p>Play by entering in words that appear on the board. letters can be connected vertically, horizonally, and diagonally</p>
     
     </div>
   </div>
+
 </body>
 
   <script src="http://unpkg.com/jquery"></script>
