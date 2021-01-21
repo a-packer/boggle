@@ -4,7 +4,7 @@ from boggle import Boggle
 from flask import session
 
 
-class FlaskTests(TestCase):
+class BoggleTestCase(TestCase):
 
     def setUp(self):
         """Stuff to do before every test."""
@@ -13,59 +13,61 @@ class FlaskTests(TestCase):
         app.config['TESTING'] = True
         app.config['DEBUG_TB_HOSTS'] = ['dont-show-debug-toolbar']
 
-    def test_homepage(self):
-        """Make sure information is in the session and HTML is displayed"""
+    def test_home(self):
+        """Make sure home is showing the high score and number of plays"""
 
-        with self.client:
+        with self.client as client:
+
             res = self.client.get('/')
-            html = response.data
+            html = res.get_data(as_text=True)
             self.assertIsNone(session.get('highscore'))
             self.assertIsNone(session.get('nplays'))
             self.assertEqual(res.status_code, 200)
             self.assertIn('<h1>Boggle Game!</h1>', html)
             self.assertIn('board', session)
 
-# class BoggleTestCase(TestCase):
-    
-#     def test_home(self):
-#         """make sure home_page and session has expected info"""
-#         with app.test_client() as client:
-#             res = client.get('/')
-#             html = res.get_data(as_text=True)
 
-#             self.assertEqual(res.status_code, 200)
-#             self.assertIn('<h1>Boggle Game!</h1>', html)
-#             self.assertIn('board', session)
+    def test_valid_word(self):
+        """Test if word is valid (in dictionary and on board) by modifying the board in the session"""
 
+        with self.client as client:
 
-#     def test_play_count(self):
-#         """check number of plays tracking"""
-#         with app.test_client() as client:
-#             res = client.get('/')
-#             self.assertEqual(res.status_code, 200)
-#             self.assertIsNone(session.get('nplays'))
-    
+            with client.session_transaction() as sess:
+                sess['board'] = [["H", "A", "P", "P", "Y"], 
+                                 ["A", "A", "T", "T", "T"], 
+                                 ["P", "A", "P", "T", "T"], 
+                                 ["P", "A", "T", "P", "A"], 
+                                 ["Y", "A", "T", "T", "Y"]
+                                 ]
 
-#     def test_valid_word(self):
-#         with app.test_client() as client:
-#             with client.session_transaction as game_session:
-#                 game_session['board'] = [
-#                     ['B', 'A', 'T', 'D', 'E'],
-#                     ['A', 'B', 'C', 'D', 'E'],
-#                     ['T', 'B', 'A', 'D', 'E'],
-#                     ['A', 'B', 'C', 'T', 'E'],
-#                     ['A', 'B', 'C', 'D', 'E']
-#                 ]
-#             response = app.client.get('/check-word?word=cat')
-#             app.assertEqual(response.json['result'], 'ok')
+        res = self.client.get('/check-word?word=happy')
+        self.assertEqual(res.json['result'], 'ok')
 
 
-#     def test_invalid_word(self):
-#         """Test if word is in the dictionary"""
+    def test_invalid_word(self):
+        """Test for word in dictionary but not on board"""
 
-#         app.client.get('/')
-#         response = app.client.get('/check-word?word=impossible')
-#         app.assertEqual(response.json['result'], 'not-on-board')
+        with self.client as client:
+
+            with client.session_transaction() as sess:
+                sess['board'] = [["H", "A", "P", "P", "Y"], 
+                                 ["A", "A", "T", "T", "T"], 
+                                 ["P", "A", "P", "T", "T"], 
+                                 ["P", "A", "T", "P", "A"], 
+                                 ["Y", "A", "T", "T", "Y"]
+                                 ]
+
+            res = self.client.get('/check-word?word=impossible')
+            self.assertEqual(res.json['result'], 'not-on-board')
+
+    def not_valid_word(self):
+        """Test for word not in dictionary"""
+
+        with self.client as client:
+            
+                self.client.get('/')
+                response = self.client.get('/check-word?word=ppy')
+                self.assertEqual(response.json['result'], 'not-word')
 
     
 
